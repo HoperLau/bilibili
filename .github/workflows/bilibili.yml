@@ -46,6 +46,7 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
+            
       - name: Package with Maven
         run: mvn -B package --file pom.xml -Dmaven.test.skip=true
 
@@ -58,6 +59,7 @@ jobs:
           zip BILIBILI-HELPER\ v${{steps.tag_latest.outputs.value}}.zip -r docs/
           zip BILIBILI-HELPER\ v${{steps.tag_latest.outputs.value}}.zip LICENSE
           zip BILIBILI-HELPER\ v${{steps.tag_latest.outputs.value}}.zip README.md
+          
       - name: Create Release
         id: create_release
         uses: actions/create-release@latest
